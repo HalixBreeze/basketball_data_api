@@ -11,31 +11,30 @@ def create_jones_cup_db():
     cursor = connection.cursor()
 
     sql = 'CREATE TABLE IF NOT EXISTS game (\
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
+        id TEXT PRIMARY KEY NOT NULL,\
         start_time TEXT,\
-        win_team_id INTEGER,\
-        lose_team_id INTEGER,\
+        win_team_id TEXT,\
+        lose_team_id TEXT,\
         win_team_score INTEGER,\
         lose_team_score INTEGER,\
-        season_id INTEGER\
+        season_id TEXT\
         )'
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS player (\
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
+        id TEXT PRIMARY KEY NOT NULL,\
         name TEXT NOT NULL,\
         age INTEGER,\
         jersey INTEGER,\
         height INTEGER,\
         weight INGEGER,\
-        position TEXT\
+        position TEXT,\
+        team_id TEXT\
         )'
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS game_player_record (\
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
-        game_id INTEGER NOT NULL,\
-        player_id INTEGER NOT NULL,\
         play_time INTEGER,\
         two_PT_all INTEGER,\
         two_PT_success INTEGER,\
@@ -47,19 +46,21 @@ def create_jones_cup_db():
         steal INTEGER,\
         rebound INTEGER,\
         assist INTEGER,\
-        block INTEGER\
+        block INTEGER,\
+        game_id TEXT NOT NULL,\
+        player_id TEXT NOT NULL\
         )'
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS season (\
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
+        id TEXT PRIMARY KEY NOT NULL,\
         year INTEGER NOT NULL,\
         name TEXT NOT NULL\
         )'
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS team (\
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
+        id TEXT PRIMARY KEY NOT NULL,\
         name TEXT NOT NULL\
         )'
     cursor.execute(sql)
