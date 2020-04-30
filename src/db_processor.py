@@ -11,7 +11,7 @@ def create_jones_cup_db():
     cursor = connection.cursor()
 
     sql = 'CREATE TABLE IF NOT EXISTS game (\
-        id TEXT PRIMARY KEY NOT NULL,\
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
         start_time TEXT,\
         win_team_id TEXT,\
         lose_team_id TEXT,\
@@ -22,7 +22,7 @@ def create_jones_cup_db():
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS player (\
-        id TEXT PRIMARY KEY NOT NULL,\
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
         name TEXT NOT NULL,\
         age INTEGER,\
         jersey INTEGER,\
@@ -53,14 +53,14 @@ def create_jones_cup_db():
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS season (\
-        id TEXT PRIMARY KEY NOT NULL,\
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
         year INTEGER NOT NULL,\
         name TEXT NOT NULL\
         )'
     cursor.execute(sql)
 
     sql = 'CREATE TABLE IF NOT EXISTS team (\
-        id TEXT PRIMARY KEY NOT NULL,\
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
         name TEXT NOT NULL\
         )'
     cursor.execute(sql)
