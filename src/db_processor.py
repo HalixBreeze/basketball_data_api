@@ -74,5 +74,25 @@ def create_jones_cup_db():
     connection.close()
     print('Created Database Completely!!')
 
+def change_data(db_path, sql):
+    connection = sqlite3.connect(db_path)
+    cursor = connection.cursor()
+
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+
+def get_data(db_path, sql):
+    connection = sqlite3.connect(db_path)
+    cursor = connection.cursor()
+
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    connection.close()
+
+    return result
+
 if __name__ == '__main__':
-    create_jones_cup_db()
+    sql = "select * from team"
+    data = get_data(r'../db/jones_cup_db.sqlite', sql)
+    print(data)
