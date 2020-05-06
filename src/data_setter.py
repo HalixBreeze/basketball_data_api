@@ -1,11 +1,12 @@
 import db_processor
 
+DB_PATH = r'../db/jones_cup_db.sqlite'
+
 def add_team():
     name = input('輸入欲新增的隊伍名稱︰')
 
-    db_path = r'../db/jones_cup_db.sqlite'
     sql = f"INSERT INTO team (`name`) VALUES ('{name}')"
-    db_processor.change_data(db_path, sql)
+    db_processor.change_data(DB_PATH, sql)
 
     print(f'<{name}>已新增')
 
@@ -20,14 +21,12 @@ def add_player():
     position = input(f'{common_text}位置︰')
     team = input(f'{common_text}所屬球隊︰')
 
-    db_path = r'../db/jones_cup_db.sqlite'
-
     sql = f"SELECT `id` FROM `team` WHERE name = '{team}'"
-    team_id = db_processor.get_data(db_path, sql)[0][0]
+    team_id = db_processor.get_data(DB_PATH, sql)[0][0]
 
     sql = f"INSERT INTO player (`name`, `age`, `jersey`, `height`, `weight`, `position`, `team_id`)\
         VALUES ('{name}', '{age}', '{jersey}', '{height}', '{weight}', '{position}', '{team_id}')"
-    db_processor.change_data(db_path, sql)
+    db_processor.change_data(DB_PATH, sql)
 
     print(f'<{name}>已新增')
 
