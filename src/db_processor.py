@@ -13,11 +13,11 @@ def create_jones_cup_db():
     sql = 'CREATE TABLE IF NOT EXISTS game (\
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
         start_time TEXT NOT NULL,\
-        win_team_id TEXT NOT NULL,\
-        lose_team_id TEXT NOT NULL,\
+        win_team_id INTEGER NOT NULL,\
+        lose_team_id INTEGER NOT NULL,\
         win_team_score INTEGER,\
         lose_team_score INTEGER,\
-        season_id TEXT NOT NULL,\
+        season_id INTEGER NOT NULL,\
         UNIQUE(season_id, start_time, win_team_id)\
         )'
     cursor.execute(sql)
@@ -30,7 +30,7 @@ def create_jones_cup_db():
         height INTEGER,\
         weight INGEGER,\
         position TEXT,\
-        team_id TEXT NOT NULL,\
+        team_id INTEGER NOT NULL,\
         UNIQUE(team_id, name)\
         )'
     cursor.execute(sql)
@@ -49,8 +49,8 @@ def create_jones_cup_db():
         rebound INTEGER,\
         assist INTEGER,\
         block INTEGER,\
-        game_id TEXT NOT NULL,\
-        player_id TEXT NOT NULL,\
+        game_id INTEGER NOT NULL,\
+        player_id INTEGER NOT NULL,\
         UNIQUE(game_id, player_id)\
         )'
     cursor.execute(sql)
