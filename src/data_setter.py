@@ -25,7 +25,7 @@ def add_player():
     team_id = db_processor.get_data(DB_PATH, sql)[0][0]
 
     sql = f"INSERT INTO player (`name`, `age`, `jersey`, `height`, `weight`, `position`, `team_id`)\
-        VALUES ('{name}', '{age}', '{jersey}', '{height}', '{weight}', '{position}', '{team_id}')"
+        VALUES ('{name}', {age}, {jersey}, {height}, {weight}, '{position}', {team_id})"
     db_processor.change_data(DB_PATH, sql)
 
     print(f'<{name}>已新增')
