@@ -30,5 +30,17 @@ def add_player():
 
     print(f'<{name}>已新增')
 
+def add_season():
+    common_text = '輸入該賽季的'
+
+    year = input(f'{common_text}年份：')
+    name = input(f'{common_text}名稱：')
+
+    sql = f"INSERT INTO season (`year`, `name`)\
+        VALUES ({year}, '{name}')"
+    db_processor.change_data(DB_PATH, sql)
+
+    print(f'{name}'已新增)
+
 if __name__ == '__main__':
-    add_player()
+    add_season()
