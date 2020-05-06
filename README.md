@@ -32,12 +32,13 @@
 * team_id
 ### game_player_record
 * id
-* playering_time
+* playing_time
 * two_PT_all
 * two_PT_success
 * three_PT_all
 * three_PT_success
-* free_throw
+* free_throw_all
+* free_throw_success
 * turnover
 * foul
 * steal

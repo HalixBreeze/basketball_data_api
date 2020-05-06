@@ -41,8 +41,9 @@ def create_jones_cup_db():
         two_PT_all INTEGER,\
         two_PT_success INTEGER,\
         three_PT_all INTEGER,\
-        threethree_PT_success INTEGER,\
-        free_throw INTEGER,\
+        three_PT_success INTEGER,\
+        free_throw_all INTEGER,\
+        free_throw_success INTEGER,\
         turnover INTEGER,\
         foul INTEGER,\
         steal INTEGER,\
