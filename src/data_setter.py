@@ -1,8 +1,6 @@
 import db_processor
 
-def add_team():
-    name = input('輸入欲新增的隊伍名稱︰')
-
+def add_team(name):
     sql = f"INSERT INTO team (`name`) VALUES ('{name}')"
     db_processor.change_data(sql)
 
