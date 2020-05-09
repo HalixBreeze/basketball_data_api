@@ -1,12 +1,10 @@
 import db_processor
 
-DB_PATH = r'../db/jones_cup_db.sqlite'
-
 def add_team():
     name = input('輸入欲新增的隊伍名稱︰')
 
     sql = f"INSERT INTO team (`name`) VALUES ('{name}')"
-    db_processor.change_data(DB_PATH, sql)
+    db_processor.change_data(sql)
 
     print(f'<{name}>已新增')
 
@@ -22,11 +20,11 @@ def add_player():
     team = input(f'{common_text}所屬球隊︰')
 
     sql = f"SELECT `id` FROM `team` WHERE name = '{team}'"
-    team_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    team_id = db_processor.get_data(sql)[0][0]
 
     sql = f"INSERT INTO player (`name`, `age`, `jersey`, `height`, `weight`, `position`, `team_id`)\
         VALUES ('{name}', {age}, {jersey}, {height}, {weight}, '{position}', {team_id})"
-    db_processor.change_data(DB_PATH, sql)
+    db_processor.change_data(sql)
 
     print(f'<{name}>已新增')
 
@@ -38,7 +36,7 @@ def add_season():
 
     sql = f"INSERT INTO season (`year`, `name`)\
         VALUES ({year}, '{name}')"
-    db_processor.change_data(DB_PATH, sql)
+    db_processor.change_data(sql)
 
     print(f'{name}已新增')
 
@@ -47,7 +45,7 @@ def add_game():
 
     season = input(f'{common_text}賽季名稱：')
     sql = f"SELECT `id` FROM `season` WHERE `name` = '{season}'"
-    season_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    season_id = db_processor.get_data(sql)[0][0]
 
     date = input(f'{common_text}比賽日期（EX：2020-01-01）：')
     time = input(f'{common_text}比賽時間（EX：15:00）：')
@@ -55,19 +53,19 @@ def add_game():
 
     win_team = input(f'{common_text}勝利隊伍：')
     sql = f"SELECT `id` FROM `team` WHERE `name` = '{win_team}'"
-    win_team_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    win_team_id = db_processor.get_data(sql)[0][0]
 
     win_team_score = input(f'{common_text}勝利隊伍得分：')
 
     lose_team = input(f'{common_text}落敗隊伍：')
     sql = f"SELECT `id` FROM `team` WHERE `name` = '{lose_team}'"
-    lose_team_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    lose_team_id = db_processor.get_data(sql)[0][0]
 
     lose_team_score = input(f'{common_text}落敗隊伍得分：')
 
     sql = f"INSERT INTO game (`start_time`, `win_team_id`, `lose_team_id`, `win_team_score`, `lose_team_score`, `season_id`)\
         VALUES ('{start_time}', {win_team_id}, {lose_team_id}, {win_team_score}, {lose_team_score}, {season_id})"
-    db_processor.change_data(DB_PATH, sql)
+    db_processor.change_data(sql)
 
     print('比賽紀錄已新增')
 
@@ -80,18 +78,18 @@ def add_game_player_record():
 
     team = input('輸入選手所屬隊伍：')
     sql = f"SELECT `id` FROM `team` WHERE `name` = '{team}'"
-    team_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    team_id = db_processor.get_data(sql)[0][0]
 
     sql = f"SELECT `id`\
         FROM `game`\
         WHERE `start_time` = '{date_time}'\
             AND (`win_team_id` = {team_id}\
                 OR `lose_team_id` = {team_id})"
-    game_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    game_id = db_processor.get_data(sql)[0][0]
 
     player = input('輸入選手姓名：')
     sql = f"SELECT `id` FROM `player` WHERE `name` = '{player}' AND `team_id` = {team_id}"
-    player_id = db_processor.get_data(DB_PATH, sql)[0][0]
+    player_id = db_processor.get_data(sql)[0][0]
 
     playing_time = input('輸入選手的上場時間（分鐘）：')
     two_PT_all = input('輸入選手的2分球出手次數：')
@@ -109,7 +107,7 @@ def add_game_player_record():
 
     sql = f"INSERT INTO `game_player_record` (`playing_time`, `two_PT_all`, `two_PT_success`, `three_PT_all`, `three_PT_success`,  `free_throw_all`, `free_throw_success`, `turnover`, `foul`, `steal`,  `rebound`, `assist`, `block`, `game_id`, `player_id`)\
         VALUES ({playing_time}, {two_PT_all}, {two_PT_success}, {three_PT_all}, {three_PT_success}, {free_throw_all}, {free_throw_success}, {turnover}, {foul}, {steal}, {rebound}, {assist}, {block}, {game_id}, {player_id})"
-    db_processor.change_data(DB_PATH, sql)
+    db_processor.change_data(sql)
 
 if __name__ == '__main__':
     add_game_player_record()

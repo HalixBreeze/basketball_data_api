@@ -1,13 +1,15 @@
 import os
 import sqlite3
 
+DB_PATH = r'../db/jones_cup_db.sqlite'
+
 def create_jones_cup_db():
     print('Creating Database...')
 
     if os.path.isdir(r'../db') != True:
         os.mkdir(r'../db')
 
-    connection = sqlite3.connect(r'../db/jones_cup_db.sqlite')
+    connection = sqlite3.connect(DB_PATH)
     cursor = connection.cursor()
 
     sql = 'CREATE TABLE IF NOT EXISTS game (\
@@ -75,16 +77,16 @@ def create_jones_cup_db():
     connection.close()
     print('Created Database Completely!!')
 
-def change_data(db_path, sql):
-    connection = sqlite3.connect(db_path)
+def change_data(sql):
+    connection = sqlite3.connect(DB_PATH)
     cursor = connection.cursor()
 
     cursor.execute(sql)
     connection.commit()
     connection.close()
 
-def get_data(db_path, sql):
-    connection = sqlite3.connect(db_path)
+def get_data(sql):
+    connection = sqlite3.connect(DB_PATH)
     cursor = connection.cursor()
 
     cursor.execute(sql)
@@ -95,5 +97,5 @@ def get_data(db_path, sql):
 
 if __name__ == '__main__':
     sql = "select * from team"
-    data = get_data(r'../db/jones_cup_db.sqlite', sql)
+    data = get_data(sql)
     print(data)
