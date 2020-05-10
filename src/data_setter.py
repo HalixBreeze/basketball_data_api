@@ -6,20 +6,7 @@ def add_team(name):
 
     print(f'<{name}>已新增')
 
-def add_player():
-    common_text = '輸入欲新增球員的'
-
-    name = input(f'{common_text}名字︰')
-    age = input(f'{common_text}年齡︰')
-    jersey = input(f'{common_text}背號︰')
-    height = input(f'{common_text}身高︰')
-    weight = input(f'{common_text}體重︰')
-    position = input(f'{common_text}位置︰')
-    team = input(f'{common_text}所屬球隊︰')
-
-    sql = f"SELECT `id` FROM `team` WHERE name = '{team}'"
-    team_id = db_processor.get_data(sql)[0][0]
-
+def add_player(name, age, jersey, height, weight, position, team_id):
     sql = f"INSERT INTO player (`name`, `age`, `jersey`, `height`, `weight`, `position`, `team_id`)\
         VALUES ('{name}', {age}, {jersey}, {height}, {weight}, '{position}', {team_id})"
     db_processor.change_data(sql)
