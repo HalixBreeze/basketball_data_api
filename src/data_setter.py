@@ -20,29 +20,7 @@ def add_season(year, name):
 
     print(f'{name}已新增')
 
-def add_game():
-    common_text = '輸入該比賽的'
-
-    season = input(f'{common_text}賽季名稱：')
-    sql = f"SELECT `id` FROM `season` WHERE `name` = '{season}'"
-    season_id = db_processor.get_data(sql)[0][0]
-
-    date = input(f'{common_text}比賽日期（EX：2020-01-01）：')
-    time = input(f'{common_text}比賽時間（EX：15:00）：')
-    start_time = date + ' ' + time
-
-    win_team = input(f'{common_text}勝利隊伍：')
-    sql = f"SELECT `id` FROM `team` WHERE `name` = '{win_team}'"
-    win_team_id = db_processor.get_data(sql)[0][0]
-
-    win_team_score = input(f'{common_text}勝利隊伍得分：')
-
-    lose_team = input(f'{common_text}落敗隊伍：')
-    sql = f"SELECT `id` FROM `team` WHERE `name` = '{lose_team}'"
-    lose_team_id = db_processor.get_data(sql)[0][0]
-
-    lose_team_score = input(f'{common_text}落敗隊伍得分：')
-
+def add_game(season_id, start_time, win_team_id, lose_team_id, win_team_score, lose_team_score):
     sql = f"INSERT INTO game (`start_time`, `win_team_id`, `lose_team_id`, `win_team_score`, `lose_team_score`, `season_id`)\
         VALUES ('{start_time}', {win_team_id}, {lose_team_id}, {win_team_score}, {lose_team_score}, {season_id})"
     db_processor.change_data(sql)
